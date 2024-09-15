@@ -1,5 +1,6 @@
 package ru.example;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,13 +18,12 @@ public class AppTest {
     private static Something somethingTestObject2;
     private static Something somethingTestObject3;
 
-    @BeforeAll
+    @BeforeAll //@BeforeEach
     public static void init() {
         somethingTestObject1 = new Something(4,5);
         somethingTestObject2 = new Something(4,0);
         somethingTestObject3 = new Something(4,-5);
     }
-
 
     @Test
     public void testResult1() {
@@ -37,5 +37,10 @@ public class AppTest {
         assertEquals(20, somethingTestObject1.result2());
         assertEquals(0, somethingTestObject2.result2());
         assertEquals(-20, somethingTestObject3.result2());
+    }
+
+    @AfterAll
+    public static void testExecuted() {
+        System.out.println("test work done");
     }
 }
